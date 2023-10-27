@@ -40,6 +40,7 @@ app.post(
     next,
   ) => {
     const { text, parentMessageId } = req.body;
+    console.log(`[server]: ${text}`);
 
     try {
       const response = await api.sendMessage(text, {
