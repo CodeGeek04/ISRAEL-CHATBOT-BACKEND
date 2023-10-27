@@ -5,10 +5,10 @@ const api = await getChatGPTAPI();
 export default async (req, res) => {
     // Check for the request method
     console.log(req);
-    if (req.method !== 'POST') {
-        res.status(405).end(); // Method Not Allowed
-        return;
-    }
+    // if (req.method !== 'POST') {
+    //     res.status(405).end(); // Method Not Allowed
+    //     return;
+    // }
 
     const { text, parentMessageId } = req.body;
 
