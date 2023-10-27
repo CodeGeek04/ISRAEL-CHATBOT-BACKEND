@@ -4,7 +4,6 @@ const api = await getChatGPTAPI();
 
 export default async (req, res) => {
     // Check for the request method
-    console.log(req);
     if (req.method === 'OPTIONS') {
         res.setHeader('Access-Control-Allow-Origin', '*'); // or specify your frontend domain
         res.setHeader('Access-Control-Allow-Methods', 'POST');
@@ -13,6 +12,7 @@ export default async (req, res) => {
         return;
     }
 
+    console.log(req.body);
     const { text, parentMessageId } = req.body;
 
     try {
