@@ -22,15 +22,18 @@ export default async (req, res) => {
                 answer: response.text,
                 messageId: response.id,
             });
+            console.log(`[server]: ${text} -> ${response.text}`);
         } else{
             const response = await api.sendMessage(text, { parentMessageId });
             res.json({
                 answer: response.text,
                 messageId: response.id,
             });
+            console.log(`[server]: ${text} -> ${response.text}`);
         }
     }
     catch (error) {
+        console.error("error: ", error);
         const errorMessage = error instanceof Error ? error.message : 'Something went wrong';
         res.status(500).json({ error: errorMessage });
     }
