@@ -12,15 +12,18 @@ export default async (req, res) => {
         return;
     }
 
+    console.log(req.body);
+
     try{
-        // const { text, parentMessageId } = req.body;
-        const text = req.body.text;
-        console.log(`[server]: ${text}`);
-        const parentMessageId = req.body.parentMessageId;
-        console.log(`[server]: ${parentMessageId}`);
+        const { text, parentMessageId } = req.body;
+        if (!parentMessageId) {
+            const response = await api.sendMessage(text);
+        } else{
+            const response = await api.sendMessage(text, { parentMessageId });
+        }
 
         try {
-            const response = await api.sendMessage(text, { parentMessageId });
+            // const response = await api.sendMessage(text, { parentMessageId });
             res.json({
                 answer: response.text,
                 messageId: response.id,
