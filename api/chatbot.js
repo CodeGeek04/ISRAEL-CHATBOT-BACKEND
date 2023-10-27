@@ -13,16 +13,22 @@ export default async (req, res) => {
     }
 
     console.log(req.body);
-    const { text, parentMessageId } = req.body;
 
-    try {
-        const response = await api.sendMessage(text, { parentMessageId });
-        res.json({
-            answer: response.text,
-            messageId: response.id,
-        });
+    try{
+        const { text, parentMessageId } = req.body;
+
+        try {
+            const response = await api.sendMessage(text, { parentMessageId });
+            res.json({
+                answer: response.text,
+                messageId: response.id,
+            });
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : 'Something went wrong';
+            res.status(500).json({ error: errorMessage });
+        }
     } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'Something went wrong';
-        res.status(500).json({ error: errorMessage });
+        console.log(error);
+        res.status(500).json({ error: 'Something went wrong' });
     }
 };
