@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 });
 app.post('/chatgpt/messages', async (req, res, next) => {
     const { text, parentMessageId } = req.body;
+    console.log(`[server]: ${text}`);
     try {
         const response = await api.sendMessage(text, {
             parentMessageId,

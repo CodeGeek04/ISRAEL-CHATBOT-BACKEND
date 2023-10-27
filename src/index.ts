@@ -29,7 +29,8 @@ app.get('/', (req, res) => {
 });
 
 app.post(
-  '/chatgpt/messages',
+  // '/chatgpt/messages',
+  '/chatbot',
   async (
     req: Request<
       {},
