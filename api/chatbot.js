@@ -1,4 +1,4 @@
-import { getChatGPTAPI } from '../src/chatgpt.js';
+import { getChatGPTAPI } from '../src/chatgpt.ts';
 
 const api = await getChatGPTAPI();
 
@@ -12,7 +12,7 @@ export default async (req, res) => {
         return;
     }
 
-    console.log(req.body);
+    console.log("Body: ", req.body);
 
     try{
         const { text, parentMessageId } = req.body;
@@ -28,7 +28,7 @@ export default async (req, res) => {
             res.status(500).json({ error: errorMessage });
         }
     } catch (error) {
-        console.log(error);
+        console.log("ERROR: ", error);
         res.status(500).json({ error: 'Something went wrong' });
     }
 };
